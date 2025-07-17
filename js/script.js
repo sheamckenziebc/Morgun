@@ -1,5 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Header Collapse on Scroll
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    let scrollThreshold = 100; // Pixels to scroll before collapsing
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        // Add collapsed class when scrolling down past threshold
+        if (currentScrollY > scrollThreshold) {
+            header.classList.add('collapsed');
+        } else {
+            header.classList.remove('collapsed');
+        }
+        
+        lastScrollY = currentScrollY;
+    }
+
+    // Throttle scroll event for better performance
+    let ticking = false;
+    function throttledScroll() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', throttledScroll);
+
     // Lightbox Gallery Functionality
     const galleryItems = document.querySelectorAll('.gallery-item img');
     const lightbox = document.getElementById('lightbox');

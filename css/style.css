@@ -70,6 +70,13 @@ header {
     top: 0;
     z-index: 100;
     box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Collapsed header state */
+header.collapsed {
+    padding: var(--space-xs) 0;
+    box-shadow: var(--shadow-md);
 }
 
 header .container {
@@ -78,28 +85,68 @@ header .container {
     align-items: center;
 }
 
-header .logo h1 a {
+/* Logo container styles */
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Logo image styles */
+header .logo .logo-img {
+    height: 160px;
+    width: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 8px rgba(45, 90, 61, 0.1));
+}
+
+/* Collapsed logo image */
+header.collapsed .logo .logo-img {
+    height: 80px;
+}
+
+/* Logo text container */
+header .logo .logo-text {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header .logo .logo-text h1 a {
     color: var(--primary-green);
     text-decoration: none;
     font-size: 2rem;
     font-weight: 700;
     font-family: var(--font-display);
     letter-spacing: -0.02em;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.2;
 }
 
-header .logo h1 a:hover {
+/* Collapsed logo text */
+header.collapsed .logo .logo-text h1 a {
+    font-size: 1.5rem;
+}
+
+header .logo .logo-text h1 a:hover {
     color: var(--secondary-green);
     transform: translateY(-1px);
 }
 
-header .logo p {
+header .logo .logo-text p {
     color: var(--text-medium);
     font-size: 0.875rem;
     font-weight: 500;
-    margin-top: -4px;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    line-height: 1.2;
+}
+
+/* Collapsed logo subtitle */
+header.collapsed .logo .logo-text p {
+    font-size: 0.75rem;
 }
 
 header nav ul {
@@ -147,7 +194,7 @@ header nav ul li a.active {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
-    background-image: url('../images/herobgyard.jpg');
+    background-image: url('../images/junkbg.jpg');
     background-size: cover;
     background-position: center center;
     filter: blur(2px);
@@ -531,6 +578,28 @@ footer p {
         gap: var(--space-md);
     }
     
+    header .logo {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+    
+    header .logo .logo-img {
+        height: 120px;
+    }
+    
+    header.collapsed .logo .logo-img {
+        height: 60px;
+    }
+    
+    header .logo .logo-text h1 a {
+        font-size: 1.75rem;
+    }
+    
+    header.collapsed .logo .logo-text h1 a {
+        font-size: 1.25rem;
+    }
+    
     header nav ul {
         gap: var(--space-md);
     }
@@ -556,5 +625,13 @@ footer p {
     header nav ul {
         flex-wrap: wrap;
         justify-content: center;
+    }
+    
+    header .logo .logo-img {
+        height: 100px;
+    }
+    
+    header.collapsed .logo .logo-img {
+        height: 50px;
     }
 } 
